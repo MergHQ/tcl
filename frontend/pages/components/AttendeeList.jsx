@@ -10,6 +10,8 @@ const AttendeeItem = ({ attendee }) => {
     <div className="attendee-item">
       <img className="attendee-pic" src={attendee.profile_image_url} />
       <a href={`https://twitch.tv/${attendee.login}`} className="attendee-header">{attendee.display_name}</a>
+      <p>{attendee.broadcaster_type}</p>
+      <p>{attendee.view_count}</p>
     </div>
   )
 }

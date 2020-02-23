@@ -12,7 +12,6 @@ import pureconfig.generic.auto._
 import org.scalatra.json._
 import org.json4s.{DefaultFormats, Formats}
 import org.json4s.JsonDSL._
-
 import scala.concurrent.{ExecutionContext, Future}
 
 class Application(system: ActorSystem) extends ScalatraServlet with FutureSupport {
@@ -31,7 +30,7 @@ class Application(system: ActorSystem) extends ScalatraServlet with FutureSuppor
   }
 
   val twitchClient = new TwitchClient(conf.twitch.twitchApiToken, conf.twitch.twitchconApiUrl)
-  val twitchService = new TwitchService(twitchClient)
+  val twitchService = new TwitchService(twitchClient, conf.aws)
 
   before() {
     contentType = "application/json"
@@ -47,6 +46,12 @@ class Application(system: ActorSystem) extends ScalatraServlet with FutureSuppor
             Json.toJson(value)
           )
         }
+    }
+  }
+
+  get("/update") {
+    new AsyncResult() {
+      override val is: Future[_] = twitchService.updateDatabase()
     }
   }
 }

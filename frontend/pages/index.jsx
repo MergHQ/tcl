@@ -9,10 +9,12 @@ export default function App() {
       .then(setAttendees)
   }, [])
 
-
   return (
   <div className="container">
     <h1 className="title">TwitchCon better attendee list</h1>
+    <button onClick={() => {
+      setAttendees([...attendees].sort((a, b) => b.view_count - a.view_count))
+    }}>Sort viewer count asc</button>
     <AttendeeList attendees={attendees} />
   </div>
   )

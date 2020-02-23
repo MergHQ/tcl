@@ -24,7 +24,9 @@ libraryDependencies ++= Seq(
   "com.softwaremill.sttp.client" %% "async-http-client-backend-future" % "2.0.0-RC9",
   "org.scalatra" %% "scalatra-json" % ScalatraVersion,
   "com.typesafe.akka" %% "akka-actor" % "2.5.3",
-  "net.databinder.dispatch" %% "dispatch-core" % "0.13.1"
+  "net.databinder.dispatch" %% "dispatch-core" % "0.13.1",
+  "com.github.seratch" %% "awscala-dynamodb" % "0.8.+",
+
 )
 
 enablePlugins(SbtTwirl)
